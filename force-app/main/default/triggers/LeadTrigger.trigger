@@ -4,6 +4,13 @@ trigger LeadTrigger on Lead (before insert, before update, after update, after i
         when BEFORE_INSERT {
             for(Lead leadRecord: Trigger.new){
                 leadRecord.LeadSource = 'Other';
+                
+                /*
+                * Making the Industry field mandatory on update
+				*/
+                if(String.isBlank(leadRecord.Industry)){
+                    leadRecord.addError('The Industry field cannot be blank.');
+                }
             }
         }
         
