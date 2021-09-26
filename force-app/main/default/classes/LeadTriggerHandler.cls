@@ -1,5 +1,7 @@
 public class LeadTriggerHandler {
     
+    public static boolean alreadyExecuted = false;
+    
     public static void beforeInsertHandler(List<Lead> newRecords) {
         for(Lead leadRecord: newRecords){
             leadRecord.LeadSource = 'Other';
@@ -18,6 +20,15 @@ public class LeadTriggerHandler {
             Tasks.add(new Task(Subject = 'Follow up on Lead Status', WhoId=leadRecord.Id));
         }
         insert tasks;
+        
+        if(LeadTriggerHandler.alreadyExecuted == false) {
+            LeadTriggerHandler.alreadyExecuted = true;
+            Lead anotherLead = new Lead(LastName = 'Lead Test Records',
+                                   		Status = 'Open - Not Contacted',
+                                   		Company = 'Test company');
+        
+        	insert anotherLead;
+        }
     }
     
     public static void beforeUpdatehandler(List<lead> newRecords, Map<Id, Lead> oldRecordsMap) {
