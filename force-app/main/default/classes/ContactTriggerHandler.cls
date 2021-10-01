@@ -36,7 +36,33 @@ public with sharing class ContactTriggerHandler {
             update accountsToUpdate;
     }
 
-    public static void afterDeleteHandler() {
+    public static void afterDeleteHandler(List<Contact> oldContacts) {
 
+        Set<Id> accountIds = new Set<Id>();
+        for(Contact contactRecord:  oldContacts) {
+            //check the contact is associated with any account
+            if(String.isNotBlank(contactRecord.AccountId)){
+                accountIds.add(contactRecord.AccountId);
+            }
+        }
+
+        List<Account> accountsToUpdate = AccountContactService.UpdateActiveContacts(accountIds, false);
+        
+        update accountsToUpdate;
+    }
+
+    public static void afterUnDeleteHandler(List<Contact> newContacts) {
+
+        Set<Id> accountIds = new Set<Id>();
+        for(Contact contactRecord:  newContacts) {
+            //check the contact is associated with any account
+            if(String.isNotBlank(contactRecord.AccountId)){
+                accountIds.add(contactRecord.AccountId);
+            }
+        }
+
+        List<Account> accountsToUpdate = AccountContactService.UpdateActiveContacts(accountIds, false);
+        
+        update accountsToUpdate;
     }
 }
