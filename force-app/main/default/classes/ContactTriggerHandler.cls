@@ -46,7 +46,7 @@ public with sharing class ContactTriggerHandler {
             }
         }
 
-        List<Account> accountsToUpdate = AccountContactService.UpdateActiveContacts(accountIds, false);
+        List<Account> accountsToUpdate = AccountContactService.UpdateActiveContacts(accountIds, true);
         
         update accountsToUpdate;
     }
