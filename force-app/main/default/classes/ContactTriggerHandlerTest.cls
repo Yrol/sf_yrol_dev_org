@@ -85,5 +85,48 @@ public with sharing class ContactTriggerHandlerTest {
         //Contacts
         List<Contact> contacts = [SELECT Id from Contact];
         System.assertEquals(4,  contacts.size());
+    } 
+
+    @isTest
+    /**
+     * Testing for active accounts
+     * In "Test 1" account we've 1000 active and 2 Inactive contacts. For "Test 2" we've no active contacts.
+     */
+    public static void afterInsertHandlerBulk(){
+
+        //creating sample records, adding them to a list and insert them
+        Account accTest1 = new Account(Name='Test 1');
+        Account accTest2 = new Account(Name='Test 2');
+
+        List<Account> testAccounts = new List<Account>{accTest1, accTest2};
+        insert testAccounts;
+
+        List<Contact> testContacts = new List<Contact>();
+
+        /**
+         * Adding 1000 records
+         */
+        for(Integer i = 0; i < 1000; i++){
+            testContacts.add(new Contact(LastName = 'Test name' + i, AccountId = testAccounts[0].Id, Active__c=true));   
+        }
+
+        testContacts.add(new Contact(LastName = 'Test name Inactive 1', AccountId = testAccounts[0].Id));
+        testContacts.add(new Contact(LastName = 'Test name Inactive 2', AccountId = testAccounts[0].Id));
+        testContacts.add(new Contact(LastName = 'Test name Inactive 3', AccountId = testAccounts[1].Id));
+
+        insert testContacts;
+
+        List<Account> accounts = [SELECT Id, Name, Active_Contacts__c FROM Account];
+
+        for(Account acc: accounts){
+            if(acc.Name == 'Test 1'){
+                System.assertEquals(1000, acc.Active_Contacts__c);
+                System.assertNotEquals(2, acc.Active_Contacts__c);
+            }
+
+            if(acc.Name == 'Test 2'){
+                System.assertEquals(null, acc.Active_Contacts__c);
+            }
+        }
     }
 }
