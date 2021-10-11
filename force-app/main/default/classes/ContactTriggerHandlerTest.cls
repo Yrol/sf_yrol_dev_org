@@ -66,7 +66,7 @@ public with sharing class ContactTriggerHandlerTest {
 
         /**
          * Checking for number of accounts above (up to this point we've only 2 accounts 0th and 1st).
-         * Checking for the active accounts. We have zero active accounts up to this point (Active accounts need to be marked as active explicitly using the Active__c). So we'll agains the defualt null value.
+         * Checking for the active accounts. We're marking the above contacts as active.
          */
         List<Account> accounts = [SELECT Id, Name, Active_Contacts__c FROM Account];
 
