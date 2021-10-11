@@ -17,6 +17,7 @@ public with sharing class AccountContactService {
         }
         
         /*
+         * Making the Active account count to 0 (when deleting and updating if applicable)
          * Making the Active_Contacts__c to 0 for the IDs that were not added to the above accountsToUpdate List.
          * This is because activeContacts query above only selects the Active__c records that are true
          */

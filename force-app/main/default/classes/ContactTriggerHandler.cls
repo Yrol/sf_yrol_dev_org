@@ -18,8 +18,8 @@ public with sharing class ContactTriggerHandler {
 
         Set<Id> accountIds = new Set<Id>();
             for(Contact contactRecord: newContacts) {  
-                /*Check the contact is associated with any account
-                *Check if the current active status is not matching the old (to avoid adding Acounts that have unchanged Active__c)
+                /* Check the contact is associated with any account
+                * Check if the current active status is not matching the old (to avoid adding Acounts that have unchanged Active__c)
                 * Also checking in "else if" whether the account ID has been change or not comparing with the old.
                 */
                 if(String.isNotBlank(contactRecord.AccountId) && 
