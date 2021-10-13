@@ -160,6 +160,12 @@ public with sharing class ContactTriggerHandlerTest {
             if(contact.LastName == 'Yrol' || contact.LastName == 'Joel'){
                 contact.Active__c = true;
             }
+
+            //Switching and activating account IDs
+            if(contact.LastName == 'Nigel') {
+                contact.AccountId = testAccounts[1].Id;
+                contact.Active__c = true;
+            }
         }
 
         //Allocate new set of Governor limits
@@ -176,7 +182,7 @@ public with sharing class ContactTriggerHandlerTest {
             }
 
             if(acc.Name == 'Test 2'){
-                System.assertEquals(null, acc.Active_Contacts__c);
+                System.assertEquals(1, acc.Active_Contacts__c);
             }
         }
     }
