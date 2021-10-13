@@ -211,7 +211,6 @@ public with sharing class ContactTriggerHandlerTest {
             if(acc.Name == 'Test 1'){
                 System.assertEquals(null, acc.Active_Contacts__c);
             }
-            
 
             if(acc.Name == 'Test 2'){
                 System.assertEquals(2, acc.Active_Contacts__c);
@@ -236,10 +235,65 @@ public with sharing class ContactTriggerHandlerTest {
                 System.assertEquals(1, acc.Active_Contacts__c);
             }
             
-
             if(acc.Name == 'Test 2'){
                 System.assertEquals(1, acc.Active_Contacts__c);
             }
         }
+    }
+
+    @isTest
+    /**
+     * Testing Update handler with switching the accounts scenario for each contact
+     */
+    public static void afterDeleteHandlerTest(){
+
+        //creating sample records, adding them to a list and insert them
+        Account accTest1 = new Account(Name='Test 1');
+        Account accTest2 = new Account(Name='Test 2');
+
+        List<Account> testAccounts = new List<Account>{accTest1, accTest2};
+        insert testAccounts;
+
+        Contact contactTest1 = new Contact(LastName='Yrol', AccountId=testAccounts[0].Id);
+        Contact contactTest2 = new Contact(LastName='Damian', AccountId=testAccounts[1].Id, Active__c=true);
+        Contact contactTest3 = new Contact(LastName='Saman', AccountId=testAccounts[1].Id, Active__c=true);
+        Contact contactTest4 = new Contact(LastName='Joel', AccountId=testAccounts[0].Id, Active__c=true);
+        Contact contactTest5 = new Contact(LastName='Nigel', AccountId=testAccounts[0].Id, Active__c=true);
+
+        List<Contact> testContacts = new List<Contact>{contactTest1, contactTest2, contactTest3, contactTest4, contactTest5};
+        insert testContacts;
+
+        System.assertEquals(5, testContacts.size());
+
+        List<Account> accounts = [SELECT Id, Name, Active_Contacts__c FROM Account];
+
+        for(Account acc: accounts){
+            if(acc.Name == 'Test 1'){
+                System.assertEquals(2, acc.Active_Contacts__c);
+            }
+
+            if(acc.Name == 'Test 2'){
+                System.assertEquals(2, acc.Active_Contacts__c);
+            }
+        }
+
+        List<Contact> contacts = [SELECT Id, LastName FROM Contact WHERE Name IN ('Damian', 'Saman', 'Joel')];
+
+        Test.startTest();
+        delete contacts;
+        Test.stopTest();
+
+        accounts = [SELECT Id, Name, Active_Contacts__c FROM Account];
+
+        for(Account acc: accounts){
+            if(acc.Name == 'Test 1'){
+                System.assertEquals(1, acc.Active_Contacts__c);
+            }
+            
+            if(acc.Name == 'Test 2'){
+                System.assertEquals(0, acc.Active_Contacts__c);
+            }
+        }
+
     }
 }
