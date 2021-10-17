@@ -1,4 +1,28 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="modes" type="List" default="[
+    {'label': 'Easy', 'value': 'easy'},
+    {'label': 'Medium', 'value': 'medium'},
+    {'label': 'Hard', 'value': 'hard'},
+    ]"/>
+
     <lightning:card title="Word Shuffle">
+        <!-- 
+            * The multipleRows allows to display rows in the next row if exceeds the allowed limit.
+            * We're NOT defining sizes for each layoutItem which allows them to space out automatically.
+            * Using the horizontalAlign for the layout to align horizontally in the center.
+        -->
+        <lightning:layout horizontalAlign="center" multipleRows="true">
+            <lightning:layoutItem padding="around-small">
+                <lightning:combobox name="mode" variant="label-hidden" label="Game Mode" value="easy" options="{! v.modes}" placeholder="Select Game Mode"/>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem padding="around-small">
+                <lightning:button variant="brand" label="Start New Game" title="Start New Game"/>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem padding="around-small">
+                <lightning:button variant="neutral" disabled="true">Reshuffle</lightning:button>
+            </lightning:layoutItem>
+        </lightning:layout>
     </lightning:card>
 </aura:component>	
