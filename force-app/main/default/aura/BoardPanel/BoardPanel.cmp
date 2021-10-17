@@ -17,12 +17,12 @@
             </lightning:layoutItem>
 
             <lightning:layoutItem padding="around-small">
-                <lightning:button variant="brand" label="Start New Game" title="Start New Game"/>
+                <lightning:button variant="brand" label="Start New Game" title="Start New Game" onclick="{!c.startGame}"/>
             </lightning:layoutItem>
 
             <lightning:layoutItem padding="around-small">
-                <lightning:button variant="neutral" disabled="true">Reshuffle</lightning:button>
+                <lightning:button variant="neutral" disabled="true" onclick="{!c.reshuffleBoard}"/>Reshuffle</lightning:button>
             </lightning:layoutItem>
         </lightning:layout>
     </lightning:card>
-</aura:component>	
+</aura:component>
