@@ -5,6 +5,8 @@
     {'label': 'Hard', 'value': 'hard'},
     ]"/>
 
+    
+
     <lightning:card title="Word Shuffle">
         <!-- 
             * The multipleRows allows to display rows in the next row if exceeds the allowed limit.
@@ -13,15 +15,23 @@
         -->
         <lightning:layout horizontalAlign="center" multipleRows="true">
             <lightning:layoutItem padding="around-small">
-                <lightning:combobox name="mode" variant="label-hidden" label="Game Mode" value="easy" options="{! v.modes}" placeholder="Select Game Mode"/>
+                <!-- aura:id is identifier used in BoardPanelController to access this component in order to get the currently selected value-->
+                <lightning:combobox 
+                    name="mode" 
+                    variant="label-hidden" 
+                    label="Game Mode" 
+                    value="easy" 
+                    options="{!v.modes}"
+                    aura:id="gameMode"
+                    placeholder="Select Game Mode"/>
             </lightning:layoutItem>
 
             <lightning:layoutItem padding="around-small">
-                <lightning:button variant="brand" label="Start New Game" title="Start New Game" onclick="{!c.startGame}"/>
+                <lightning:button aura:id="startNewGameButton" variant="brand" label="Start New Game" title="Start New Game" onclick="{!c.startGame}"/>
             </lightning:layoutItem>
 
             <lightning:layoutItem padding="around-small">
-                <lightning:button variant="neutral" disabled="true" onclick="{!c.reshuffleBoard}"/>Reshuffle</lightning:button>
+                <lightning:button variant="neutral" disabled="true" title="Reshuffle" onclick="{!c.reshuffleBoard}"/>
             </lightning:layoutItem>
         </lightning:layout>
     </lightning:card>
