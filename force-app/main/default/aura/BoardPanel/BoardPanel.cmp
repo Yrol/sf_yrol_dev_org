@@ -5,7 +5,7 @@
     {'label': 'Hard', 'value': 'hard'},
     ]"/>
 
-    
+    <aura:attribute type="String" name="selectedMode" />
 
     <lightning:card title="Word Shuffle">
         <!-- 
@@ -31,8 +31,10 @@
             </lightning:layoutItem>
 
             <lightning:layoutItem padding="around-small">
-                <lightning:button variant="neutral" disabled="true" title="Reshuffle" onclick="{!c.reshuffleBoard}"/>
+                <lightning:button label="Reshuffle" disabled="true" title="Reshuffle" onclick="{!c.reshuffleBoard}"/>
             </lightning:layoutItem>
         </lightning:layout>
+        Select mode is: {!v.selectedMode}
     </lightning:card>
+
 </aura:component>
