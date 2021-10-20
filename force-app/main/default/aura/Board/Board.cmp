@@ -3,20 +3,29 @@
 
     <aura:handler name="render" value="{!this}" action="{!c.doRender}"></aura:handler>
 
-    <aura:attribute type="String" name="WinWord"></aura:attribute>
+    <aura:attribute type="String" name="WinWord" access="private"></aura:attribute>
 
-    <aura:attribute type="List" name="RandomWords"></aura:attribute>
+    <aura:attribute type="List" name="RandomWords" access="private"></aura:attribute>
 
-    <lightning:layout multipleRows="true">
-        <lightning:layoutItem size="4" padding="around-small"> 1 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small"> 2 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small"> 3 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small"> 4 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small"> 5 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small"> 6 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small"> 7 </lightning:layoutItem>
-    </lightning:layout>
+    <aura:attribute type="Integer" name="clickCount" default="0" access="private"></aura:attribute>
 
-    <p>Words: {!v.RandomWords}</p>
-    <p>Win word: {!v.WinWord}</p>
+    <div class="board">
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small"> WORD : {!v.WinWord} </lightning:layoutItem>
+        </lightning:layout>
+        <lightning:layout>
+            <!-- Subtract the moves from maximum chances of 3-->
+            <lightning:layoutItem> Moves reamining: {! (3 - v.clickCount)}</lightning:layoutItem>
+        </lightning:layout>
+
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="4" padding="around-small"> 1 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small"> 2 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small"> 3 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small"> 4 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small"> 5 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small"> 6 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small"> 7 </lightning:layoutItem>
+        </lightning:layout>
+    </div>
 </aura:component>
