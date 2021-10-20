@@ -3,6 +3,10 @@
 
     <aura:handler name="render" value="{!this}" action="{!c.doRender}"></aura:handler>
 
+    <aura:attribute type="String" name="WinWord"></aura:attribute>
+
+    <aura:attribute type="List" name="RandomWords"></aura:attribute>
+
     <lightning:layout multipleRows="true">
         <lightning:layoutItem size="4" padding="around-small"> 1 </lightning:layoutItem>
         <lightning:layoutItem size="4" padding="around-small"> 2 </lightning:layoutItem>
@@ -12,4 +16,7 @@
         <lightning:layoutItem size="4" padding="around-small"> 6 </lightning:layoutItem>
         <lightning:layoutItem size="4" padding="around-small"> 7 </lightning:layoutItem>
     </lightning:layout>
+
+    <p>Words: {!v.RandomWords}</p>
+    <p>Win word: {!v.WinWord}</p>
 </aura:component>

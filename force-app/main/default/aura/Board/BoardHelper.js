@@ -105,5 +105,10 @@
 
         //returning the requested amount of words
         return words.sort(() => Math.random() - Math.random()).slice(0, count)
+    },
+
+    getWinWord: function(wordsArr) {
+        const winWord = Math.floor(Math.random() * wordsArr.length);
+        return wordsArr[winWord];
     }
 })
