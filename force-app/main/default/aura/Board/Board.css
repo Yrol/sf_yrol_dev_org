@@ -1,2 +1,9 @@
-.THIS {
+.THIS.board {
+    background: white;
+    position: relative;
+}
+
+.THIS .win-word {
+    text-transform: uppercase;
+    font-weight: bold;
 }

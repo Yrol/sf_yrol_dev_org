@@ -1,21 +1,24 @@
-<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+<aura:component implements="flexipage:availableForAllPageTypes">
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"></aura:handler>
 
     <aura:handler name="render" value="{!this}" action="{!c.doRender}"></aura:handler>
 
-    <aura:attribute type="String" name="WinWord" access="private"></aura:attribute>
+    <aura:attribute type="String" name="WinWord"></aura:attribute>
 
-    <aura:attribute type="List" name="RandomWords" access="private"></aura:attribute>
+    <aura:attribute type="List" name="RandomWords"></aura:attribute>
 
     <aura:attribute type="Integer" name="clickCount" default="0" access="private"></aura:attribute>
 
     <div class="board">
         <lightning:layout>
-            <lightning:layoutItem padding="around-small"> WORD : {!v.WinWord} </lightning:layoutItem>
-        </lightning:layout>
-        <lightning:layout>
+            <lightning:layoutItem padding="around-small">
+                <span class="slds-text-heading--medium">WORD : <span class="win-word">{!v.WinWord} </span></span>
+            </lightning:layoutItem>
+
             <!-- Subtract the moves from maximum chances of 3-->
-            <lightning:layoutItem> Moves reamining: {! (3 - v.clickCount)}</lightning:layoutItem>
+            <lightning:layoutItem padding="around-small">
+                <span class="slds-text-heading--medium"> Moves reamining: {! (3 - v.clickCount)} </span>
+            </lightning:layoutItem>
         </lightning:layout>
 
         <lightning:layout multipleRows="true">
