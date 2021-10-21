@@ -27,7 +27,9 @@
 
         <lightning:layout multipleRows="true">
             <aura:iteration items="{!v.RandomWords}" var="word">
-                <lightning:layoutItem size="{!v.blockSize}" padding="around-small"> {!word} </lightning:layoutItem>
+                <lightning:layoutItem size="{!v.blockSize}" padding="around-small">
+                    <c:Block label="{!word}" />
+                </lightning:layoutItem>
             </aura:iteration>
         </lightning:layout>
     </div>
