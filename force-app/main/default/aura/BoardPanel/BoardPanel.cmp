@@ -1,9 +1,13 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global">
-    <aura:attribute name="modes" type="List" default="[
+    <aura:attribute
+        name="modes"
+        type="List"
+        default="[
     {'label': 'Easy', 'value': 'easy'},
     {'label': 'Medium', 'value': 'medium'},
     {'label': 'Hard', 'value': 'hard'},
-    ]"/>
+    ]"
+    />
 
     <aura:attribute type="String" name="selectedMode" />
 
@@ -16,25 +20,43 @@
         <lightning:layout horizontalAlign="center" multipleRows="true">
             <lightning:layoutItem padding="around-small">
                 <!-- aura:id is identifier used in BoardPanelController to access this component in order to get the currently selected value-->
-                <lightning:combobox 
-                    name="mode" 
-                    variant="label-hidden" 
-                    label="Game Mode" 
-                    value="easy" 
+                <lightning:combobox
+                    name="mode"
+                    variant="label-hidden"
+                    label="Game Mode"
+                    value="easy"
                     options="{!v.modes}"
                     aura:id="gameMode"
-                    placeholder="Select Game Mode"/>
+                    placeholder="Select Game Mode"
+                />
             </lightning:layoutItem>
 
             <lightning:layoutItem padding="around-small">
-                <lightning:button aura:id="startNewGameButton" variant="brand" label="Start New Game" title="Start New Game" onclick="{!c.startGame}"/>
+                <lightning:button
+                    aura:id="startNewGameButton"
+                    variant="brand"
+                    label="Start New Game"
+                    title="Start New Game"
+                    onclick="{!c.startGame}"
+                />
             </lightning:layoutItem>
 
             <lightning:layoutItem padding="around-small">
-                <lightning:button label="Reshuffle" disabled="true" title="Reshuffle" onclick="{!c.reshuffleBoard}"/>
+                <lightning:button label="Reshuffle" disabled="true" title="Reshuffle" onclick="{!c.reshuffleBoard}" />
             </lightning:layoutItem>
+
+            <!-- Using the Aura if-else condition -->
+            <aura:if isTrue="{!(v.selectedMode != null)}">
+                <!-- Adding the board component-->
+                <lightning:layoutItem size="12">
+                    <c.Board gameMode="{!v.selectedMode}"></c.Board>
+                </lightning:layoutItem>
+                <aura:set attribute="else">
+                    <lightning:layoutItem padding="around-small" size="12">
+                        <p>Please select a game mode to play.</p>
+                    </lightning:layoutItem>
+                </aura:set>
+            </aura:if>
         </lightning:layout>
-        Select mode is: {!v.selectedMode}
     </lightning:card>
-
 </aura:component>
