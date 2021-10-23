@@ -8,6 +8,7 @@
     <aura:attribute type="Integer" name="clickCount" default="0" access="private" />
     <aura:attribute type="Integer" name="blockSize" default="0" />
     <aura:attribute type="String" name="result" />
+    <aura:attribute name="boardDisabled" type="Boolean" default="false"></aura:attribute>
 
     <aura:handler name="onclick" event="c:BlockClickEvent" action="{!c.blockClickHandler}" />
 
@@ -16,12 +17,19 @@
             <lightning:layoutItem padding="around-small">
                 <span class="slds-text-heading--medium">WORD : <span class="win-word">{!v.WinWord} </span></span>
             </lightning:layoutItem>
-
+            <lightning:layoutItem padding="around-small">
+                <span class="slds-text-heading--medium">{!v.result} </span>
+            </lightning:layoutItem>
             <!-- Subtract the moves from maximum chances of 3-->
             <lightning:layoutItem padding="around-small">
                 <span class="slds-text-heading--medium"> Moves reamining: {! (3 - v.clickCount)} </span>
             </lightning:layoutItem>
         </lightning:layout>
+
+        <!-- A layer that is  disabling the board -->
+        <aura:if isTrue="{!v.boardDisabled}">
+            <div class="board-disabled"></div>
+        </aura:if>
 
         <lightning:layout multipleRows="true">
             <aura:iteration items="{!v.RandomWords}" var="word">

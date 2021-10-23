@@ -42,9 +42,11 @@
         if(value === component.get("v.WinWord")){
             //user has won
             component.set("v.result", "YOU WIN");
+            helper.disableBoard(component);
             console.log('You won');
         } else if(clickCount === 3) {
             console.log('You lost');
+            helper.disableBoard(component);
             component.set("v.result", "YOU LOST");
         }
 

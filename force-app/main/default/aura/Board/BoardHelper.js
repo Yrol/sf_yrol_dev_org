@@ -110,5 +110,13 @@
     getWinWord: function(wordsArr) {
         const winWord = Math.floor(Math.random() * wordsArr.length);
         return wordsArr[winWord];
+    },
+
+    disableBoard: function(component) {
+        component.set("v.boardDisabled", true);
+    },
+
+    enableBoard: function(component) {
+        component.set("v.boardDisabled", false);
     }
 })
