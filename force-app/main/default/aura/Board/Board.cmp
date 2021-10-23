@@ -2,16 +2,14 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" access="private"></aura:handler>
 
     <aura:handler name="render" value="{!this}" action="{!c.doRender}" access="private"></aura:handler>
-
     <aura:attribute type="String" name="WinWord" />
-
     <aura:attribute type="List" name="RandomWords" />
-
     <aura:attribute type="String" name="gameMode" default="hard" />
-
     <aura:attribute type="Integer" name="clickCount" default="0" access="private" />
-
     <aura:attribute type="Integer" name="blockSize" default="0" />
+    <aura:attribute type="String" name="result" />
+
+    <aura:handler name="onclick" event="c:BlockClickEvent" action="{!c.blockClickHandler}" />
 
     <div class="board">
         <lightning:layout>

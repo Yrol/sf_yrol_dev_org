@@ -30,8 +30,25 @@
 
         component.set('v.RandomWords', words)
         component.set('v.WinWord',winWord)
+    },
 
+    blockClickHandler : function(component, event, helper) {
 
+        let clickCount = component.get("v.clickCount") +  1;
+
+        //getting the value that comes from BlockController.js - compEvent.setParam (the one we passed as JSON)
+        const value = event.getParam("value");
+
+        if(value === component.get("v.WinWord")){
+            //user has won
+            component.set("v.result", "YOU WIN");
+            console.log('You won');
+        } else if(clickCount === 3) {
+            console.log('You lost');
+            component.set("v.result", "YOU LOST");
+        }
+
+        component.set("v.clickCount", clickCount)
     },
 
     doRender : function(component, event, helper) {
