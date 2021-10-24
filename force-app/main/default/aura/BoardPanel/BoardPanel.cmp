@@ -49,7 +49,7 @@
             <aura:if isTrue="{!(v.selectedMode != null)}">
                 <!-- Adding the board component-->
                 <lightning:layoutItem size="12">
-                    <c:Board gameMode="{!v.selectedMode}"></c:Board>
+                    <c:Board aura:id="boardComp" gameMode="{!v.selectedMode}"></c:Board>
                 </lightning:layoutItem>
                 <aura:set attribute="else">
                     <lightning:layoutItem padding="around-small" size="12">

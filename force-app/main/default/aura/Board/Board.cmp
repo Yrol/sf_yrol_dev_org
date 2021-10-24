@@ -12,6 +12,9 @@
 
     <aura:handler name="onclick" event="c:BlockClickEvent" action="{!c.blockClickHandler}" />
 
+    <!--Aura method which calls the action "doInit" defined in the JS controller-->
+    <aura:method name="startGame" action="{!c.doInit}" description="Starting a new Game"> </aura:method>
+
     <div class="board">
         <lightning:layout>
             <lightning:layoutItem padding="around-small">

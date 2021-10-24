@@ -30,6 +30,8 @@
 
         component.set('v.RandomWords', words)
         component.set('v.WinWord',winWord)
+
+        helper.resetBoard(component);
     },
 
     blockClickHandler : function(component, event, helper) {
