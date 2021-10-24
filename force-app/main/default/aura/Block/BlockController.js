@@ -16,5 +16,10 @@
 
             compEvent.fire();
         }
+    },
+
+    afterScriptsLoaded : function(component, event, helper) {
+        const divElement = component.getElement('.board-block');
+        fitText(divElement);
     }
 })
