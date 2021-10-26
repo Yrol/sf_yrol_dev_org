@@ -4,16 +4,7 @@
         //getting the current game mode
         const gameMode = component.get('v.gameMode');
 
-        let columns = 0;
-
-        //determining the number of columns
-        if(gameMode && gameMode === 'medium'){
-            columns = 4;
-        } else if(gameMode && gameMode === 'hard'){
-            columns = 6;
-        } else {
-            columns = 3;
-        }
+        let columns = helper.getColumns(gameMode);
 
         //getting the grid size (12 is the horizontal number of maximum columns in Aura framework)
         let blockSize = 12/columns;
@@ -46,13 +37,25 @@
             component.set("v.result", "YOU WIN");
             helper.disableBoard(component);
             console.log('You won');
+            helper.fireResultEvent('win');
         } else if(clickCount === 3) {
             console.log('You lost');
             helper.disableBoard(component);
             component.set("v.result", "YOU LOST");
+            helper.fireResultEvent('lost');
         }
 
         component.set("v.clickCount", clickCount)
+    },
+
+    reshuffleBoard: function(component, event, helper) {
+        const gameMode = component.get('v.gameMode');
+        let columns = helper.getColumns(gameMode);
+        const words = helper.getWords(columns * columns);
+        let winWord = helper.getWinWord(words);
+        component.set('v.RandomWords', words)
+        component.set('v.WinWord',winWord)
+        helper.resetBoard(component);
     },
 
     doRender : function(component, event, helper) {

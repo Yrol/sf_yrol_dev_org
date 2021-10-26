@@ -8,12 +8,15 @@
     <aura:attribute type="Integer" name="clickCount" default="0" access="private" />
     <aura:attribute type="Integer" name="blockSize" default="0" />
     <aura:attribute type="String" name="result" />
-    <aura:attribute name="boardDisabled" type="Boolean" default="false"></aura:attribute>
+    <aura:attribute type="Boolean" name="boardDisabled" default="false"></aura:attribute>
 
     <aura:handler name="onclick" event="c:BlockClickEvent" action="{!c.blockClickHandler}" />
 
     <!--Aura method which calls the action "doInit" defined in the JS controller-->
     <aura:method name="startGame" action="{!c.doInit}" description="Starting a new Game"> </aura:method>
+
+    <!-- Reshuffle the board -->
+    <aura:method name="reshuffleBoard" action="{!c.reshuffleBoard}" description="Reshuffle the board" />
 
     <div class="board">
         <lightning:layout>

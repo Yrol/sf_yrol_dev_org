@@ -8,7 +8,7 @@
             //getting the label value
             const label = component.get("v.label");
 
-            //fire the block click event
+            //firing the event called "onclick" defined in the BoardPanel.cmp Parent Controller (from child to parent communication)
             let compEvent = component.getEvent("onclick");
 
             //passing as JSON

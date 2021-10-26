@@ -25,6 +25,18 @@
     },
 
     reshuffleBoard : function(component, event, helper) {
-        console.log("Board reshuffle!");
+        const boardComp = component.find('boardComp');
+        component.set("v.reshuffleDisabled", true)
+        boardComp.reshuffleBoard();
+    },
+
+    onResultHandler: function(component, event, helper) {
+        const result = event.getParam("result");
+
+        if(result === "win") {
+            component.set("v.reshuffleDisabled", true);
+        } else {
+            component.set("v.reshuffleDisabled", false);
+        }
     }
 })

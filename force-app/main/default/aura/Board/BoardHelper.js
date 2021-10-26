@@ -112,6 +112,21 @@
         return wordsArr[winWord];
     },
 
+    getColumns: function(gameMode) {
+        let columns = 0;
+
+        //determining the number of columns
+        if(gameMode && gameMode === 'medium'){
+            columns = 4;
+        } else if(gameMode && gameMode === 'hard'){
+            columns = 6;
+        } else {
+            columns = 3;
+        }
+
+        return columns;
+    },
+
     disableBoard: function(component) {
         component.set("v.boardDisabled", true);
     },
@@ -130,5 +145,17 @@
 
         //reset the results
         component.set("v.result", "");
+    },
+
+        /**
+     * 
+     * @param {*} resultValue 
+     * Getting the Result using an Application Event
+     */
+    fireResultEvent: function(resultValue){
+        //if working with a managed package, replace the "c" with that
+        const appEvent = $A.get("e.c:ResultApplicationEvent");
+        appEvent.setParams({result: resultValue});
+        appEvent.fire();
     }
 })
