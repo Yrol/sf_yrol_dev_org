@@ -1,4 +1,4 @@
-<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+<aura:component implements="flexipage:availableForAllPageTypes" controller="BoardPanelController" access="global">
     <aura:attribute
         name="modes"
         type="List"
