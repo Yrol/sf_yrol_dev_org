@@ -3,6 +3,7 @@
     position: relative;
 }
 
+/* Using space when accessing elements within direct child. The "win-word" is an element of direct child -  "board" */
 .THIS .win-word {
     text-transform: uppercase;
     font-weight: bold;

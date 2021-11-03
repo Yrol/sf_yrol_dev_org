@@ -13,7 +13,7 @@
 }
 
 /* the hover effect*/
-.THIS.THIS.board-block:hover {
+.THIS.board-block:hover {
     background-color: #ededed;
     border: 1px solid #ededed;
 }
